@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class productController {
@@ -20,16 +21,44 @@ public class productController {
 		String name = request.getParameter("name");
 		String price = request.getParameter("price");
 		String company = request.getParameter("company");
-		String Date = request.getParameter("Date");
+		String date = request.getParameter("date");
 		String qty = request.getParameter("qty");
 		
 		model.addAttribute("no", no);
 		model.addAttribute("name", name);
 		model.addAttribute("price", price);
 		model.addAttribute("company", company);
-		model.addAttribute("Date", Date);
+		model.addAttribute("date", date);
 		model.addAttribute("qty", qty);
 		
 		return "product/productResult";
+	}
+	
+	@RequestMapping("/product/newProduct2")
+	public String insertProduct2(@RequestParam("no") String no, 
+								@RequestParam("name") String name, 
+								@RequestParam("price") String price,
+								@RequestParam("company") String company,
+								@RequestParam("date") String date,
+								@RequestParam("qty") String qty,
+								Model model) {
+		
+		// view 페이지로 풀력 : Model 설정
+		model.addAttribute("no", no);
+		model.addAttribute("name", name);
+		model.addAttribute("price", price);
+		model.addAttribute("company", company);
+		model.addAttribute("date", date);
+		model.addAttribute("qty", qty);
+		
+		return "product/productResult";
+		
+	}
+	
+	@RequestMapping("/product/newProduct3")
+	public String insertProduct3(Product product) {
+		// Command 객체는 자동으로 View Model에 등록됨 : Model 설정 필요 없음
+		System.out.println(product.getName()); //콘솔에 출력
+		return "product/productCmdResult";
 	}
 }

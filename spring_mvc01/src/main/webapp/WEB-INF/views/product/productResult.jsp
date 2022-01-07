@@ -11,7 +11,7 @@
 	상품명 : ${name }<br>
 	가격 : ${price }<br>
 	제조회사 : ${company }<br>
-	제조일 : ${Date }<br>
+	제조일 : ${date }<br>
 	재고 : ${qty }<br>
 
 </body>
