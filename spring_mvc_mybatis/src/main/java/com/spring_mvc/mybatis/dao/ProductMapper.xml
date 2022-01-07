@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring_mvc.mybatis.dao.IProductDAO">
+
+	<resultMap type="com.spring_mvc.mybatis.model.ProductVO" id="prdResult">
+		<result property="prdNo" column="prdNo" />
+		<result property="prdName" column="prdName" />
+		<result property="prdPrice" column="prdPrice" />
+		<result property="prdCompany" column="prdCompany" />
+		<result property="prdStock" column="prdStock" />
+	</resultMap>
+	
+	<!-- 전체 상품 조회(SQL) -->
+	<select id="listAllProduct" resultMap="prdResult">
+		SELECT * FROM product ORDER BY prdNo
+	</select>
+	
+	<!-- 상품 등록 -->
+	<insert id="insertProduct" parameterType="com.spring_mvc.mybatis.model.ProductVO">
+		INSERT INTO product (prdNo, prdName, prdPrice, prdCompany, prdStock)
+		VALUES(#{prdNo}, #{prdName}, #{prdPrice}, #{prdCompany}, #{prdStock})
+	</insert>
+	
+</mapper>

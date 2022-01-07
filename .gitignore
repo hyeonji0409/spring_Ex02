@@ -69,4 +69,17 @@ local.properties
 # Spring Boot Tooling
 .sts4-cache/
 
+### Database ###
+*.accdb
+*.db
+*.dbf
+*.mdb
+*.pdb
+*.sqlite3
+
+*.properties
+
+# imgae
+imgae/
+
 # End of https://www.toptal.com/developers/gitignore/api/eclipse
