@@ -16,7 +16,7 @@
 		</tr>
 		<tr>
 			<td>상품명</td>
-			<td>${prd.prdNo }</td>
+			<td>${prd.prdName }</td>
 		</tr>
 		<tr>
 			<td>가격</td>
