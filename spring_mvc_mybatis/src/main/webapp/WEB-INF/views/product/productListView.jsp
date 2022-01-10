@@ -16,6 +16,7 @@
 			<th>가격</th>
 			<th>제조사</th>
 			<th>재고</th>
+			<th>상품 이미지</th>
 		</tr>
 		
 		<c:forEach items="${prdList }" var="prd">
@@ -25,6 +26,10 @@
 				<td>${prd.prdPrice}</td>
 				<td>${prd.prdCompany}</td>
 				<td>${prd.prdStock}</td>
+				<td><img src="<c:url value='/images/${prd.prdNo }.jpg' />" width="30" height="20">
+					<!-- 또는 -->
+					<img src="/mybatis/images/${prd.prdNo }.jpg" width="30" height="20">
+				</td>
 			</tr>
 		</c:forEach>
 	</table> <br>

@@ -79,7 +79,8 @@ local.properties
 
 *.properties
 
-# imgae
-imgae/
+# image
+image/
+productImages/
 
 # End of https://www.toptal.com/developers/gitignore/api/eclipse

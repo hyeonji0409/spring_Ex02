@@ -25,4 +25,19 @@
 		VALUES(#{prdNo}, #{prdName}, #{prdPrice}, #{prdCompany}, #{prdStock})
 	</insert>
 	
+	<!-- 상품 상세 정보 조회 -->
+	<select id="detailViewProduct" parameterType="string" resultType="com.spring_mvc.mybatis.model.ProductVO">
+		SELECT * FROM product WHERE prdNo=#{prdNo}
+	</select>
+	
+	<!-- 상품 정보 수정 : 수정된 정보 DB에 저장(상품 번호는 수정하지 않음) -->
+	<update id="updateProduct" parameterType="com.spring_mvc.mybatis.model.ProductVO">
+		UPDATE product SET prdName = #{prdName}, prdPrice = #{prdPrice}, prdCompany = #{prdCompany}, prdStock = #{prdStock}
+		WHERE prdNo = #{prdNo}
+	</update>
+	
+	<!-- 상품 정보 삭제 -->
+	<delete id="deleteProduct" parameterType="string">
+		DELETE FROM product WHERE prdNo = #{prdNo}
+	</delete>
 </mapper>
