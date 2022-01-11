@@ -1,6 +1,7 @@
 package com.spring_mvc.mybatis.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -45,4 +46,13 @@ public class ProductService implements IProductService {
 		return dao.detailViewProduct(prdNo);
 	}
 
+	@Override
+	public String prdNoCheck(String prdNo) {
+		return dao.prdNoCheck(prdNo);
+	}
+	
+	@Override
+	public ArrayList<ProductVO> productSearch(HashMap<String, Object> map){
+		return dao.productSearch(map);
+	}
 }

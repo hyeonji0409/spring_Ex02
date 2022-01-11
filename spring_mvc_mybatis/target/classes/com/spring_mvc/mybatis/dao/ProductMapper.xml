@@ -14,6 +14,8 @@
 		<result property="prdStock" column="prdStock" />
 	</resultMap>
 	
+	<!-- id는 dao의 이름과 같아야 함 -->
+	
 	<!-- 전체 상품 조회(SQL) -->
 	<select id="listAllProduct" resultMap="prdResult">
 		SELECT * FROM product ORDER BY prdNo
@@ -40,4 +42,25 @@
 	<delete id="deleteProduct" parameterType="string">
 		DELETE FROM product WHERE prdNo = #{prdNo}
 	</delete>
+	
+	<!-- 상품 중복 체크 -->
+	<select id="prdNoCheck" resultType="string" parameterType="string">
+		SELECT prdNo FROM product WHERE prdNo=#{prdNo}
+	</select>
+	
+	<!-- 상품 검색 -->
+	<select id="productSearch" resultMap="prdResult" parameterType="hashmap">
+		SELECT * FROM product WHERE
+		<choose>
+			<when test="type != null and type.equals('prdName')">
+				<!-- 상품 명으로 검색 -->
+				prdName LIKE CONCAT('%', #{keyword}, '%')
+			</when>
+				
+			<when test="type != null and type.equals('prdCompany')">
+				<!-- 제조 회사로 검색 -->
+				prdCompany LIKE CONCAT('%', #{keyword}, '%')
+			</when>
+		</choose>
+	</select>
 </mapper>
