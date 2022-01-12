@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.multi.product.IProductDAO">
+
+	<resultMap type="com.multi.product.ProductVO" id="prdResult">
+		<result property="prdNo" column="prdNo" />
+		<result property="prdName" column="prdName" />
+		<result property="prdPrice" column="prdPrice" />
+		<result property="prdCompany" column="prdCompany" />
+		<result property="prdStock" column="prdStock" />
+	</resultMap>
+	
+	<!-- id는 dao의 이름과 같아야 함 -->
+	
+	<!-- 전체 상품 조회(SQL) -->
+	<select id="listAllProduct" resultMap="prdResult">
+		SELECT * FROM product ORDER BY prdNo
+	</select>
+	
+	<!-- 상품 등록 -->
+	<insert id="insertProduct" parameterType="com.multi.product.ProductVO">
+		INSERT INTO product (prdNo, prdName, prdPrice, prdCompany, prdStock)
+		VALUES(#{prdNo}, #{prdName}, #{prdPrice}, #{prdCompany}, #{prdStock})
+	</insert>
+	
+	<!-- 상품 상세 정보 조회 -->
+	<select id="detailViewProduct" parameterType="string" resultType="com.multi.product.ProductVO">
+		SELECT * FROM product WHERE prdNo=#{prdNo}
+	</select>
+	
+	<!-- 상품 정보 수정 : 수정된 정보 DB에 저장(상품 번호는 수정하지 않음) -->
+	<update id="updateProduct" parameterType="com.multi.product.ProductVO">
+		UPDATE product SET prdName = #{prdName}, prdPrice = #{prdPrice}, prdCompany = #{prdCompany}, prdStock = #{prdStock}
+		WHERE prdNo = #{prdNo}
+	</update>
+	
+	<!-- 상품 정보 삭제 -->
+	<delete id="deleteProduct" parameterType="string">
+		DELETE FROM product WHERE prdNo = #{prdNo}
+	</delete>
+	
+	<!-- 상품 중복 체크 -->
+	<select id="prdNoCheck" resultType="string" parameterType="string">
+		SELECT prdNo FROM product WHERE prdNo=#{prdNo}
+	</select>
+	
+	<!-- 상품 검색 -->
+	<select id="productSearch" resultMap="prdResult" parameterType="hashmap">
+		SELECT * FROM product WHERE
+		<choose>
+			<when test="type != null and type.equals('prdName')">
+				<!-- 상품 명으로 검색 -->
+				prdName LIKE CONCAT('%', #{keyword}, '%')
+			</when>
+				
+			<when test="type != null and type.equals('prdCompany')">
+				<!-- 제조 회사로 검색 -->
+				prdCompany LIKE CONCAT('%', #{keyword}, '%')
+			</when>
+		</choose>
+	</select>
+</mapper>

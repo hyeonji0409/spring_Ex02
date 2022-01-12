@@ -6,7 +6,7 @@ import java.util.HashMap;
 import com.spring_mvc_mybatis.book.model.BookVO;
 
 public interface IBookService {
-	// ±¸Çö Å¬·¡½º¿¡¼­ ¿À¹ö¶óÀÌµùÇÒ Ãß»ó ¸Ş¼Òµå ¼±¾ğ
+	// êµ¬í˜„ í´ë˜ìŠ¤ì—ì„œ ì˜¤ë²„ë¼ì´ë”©í•  ì¶”ìƒ ë©”ì†Œë“œ ì„ ì–¸
 	ArrayList<BookVO> listAllBook();
 	void insertBook(BookVO bookVo);
 	void updateBook(BookVO bookVo);

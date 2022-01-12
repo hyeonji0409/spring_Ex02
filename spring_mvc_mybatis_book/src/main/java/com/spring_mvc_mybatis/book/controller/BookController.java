@@ -17,97 +17,97 @@ import com.spring_mvc_mybatis.book.service.BookService;
 @Controller
 public class BookController {
 
-	// DI ¼³Á¤
-	@Autowired
-	BookService service;
+	// DI ì„¤ì •
+		@Autowired
+		BookService service;
 
-	// ½ÇÇà ½Ã index ÆäÀÌÁö ¿­±â
-	@RequestMapping("/")
-	public String viewIndex() {
-		return "index";
-	}
-
-	// ÀüÃ¼ µµ¼­ Á¶È¸
-	@RequestMapping("/book/listAllBook")
-	public String listAllBook(Model model) {
-		ArrayList<BookVO> bookList = service.listAllBook();
-		model.addAttribute("bookList", bookList);
-
-		return "book/bookListView";
-	}
-
-	// µµ¼­ µî·Ï Æû ÀÌµ¿
-	@RequestMapping("/book/newBookForm")
-	public String newBookForm() {
-		return "book/newBookForm";
-	}
-
-	// µµ¼­ µî·Ï
-	@RequestMapping("/book/insertBook")
-	public String insertBook(BookVO book) {
-		System.out.println(book.getBookNo());
-		service.insertBook(book);
-		return "redirect:./listAllBook";
-	}
-
-	// »ó¼¼ ÆäÀÌÁö ÀÌµ¿
-	@RequestMapping("/book/detailViewBook/{bookNo}")
-	public String detailViewBook(@PathVariable String bookNo, Model model) {
-		BookVO book = service.detailViewBook(bookNo);
-		model.addAttribute("book", book);
-		return "book/bookDetailView";
-	}
-
-	// ¼öÁ¤ È­¸é ÆäÀÌÁö ÀÌµ¿ (¼öÁ¤ÇÏ±â À§ÇØ »óÇ° »ó¼¼ Á¤º¸¸¦ È­¸é¿¡ ¸ÕÀú Ãâ·Â)
-	@RequestMapping("/book/updateBookForm/{bookNo}")
-	public String updateBookForm(@PathVariable String bookNo, Model model) {
-		// »óÇ°Á¤º¸ Àü´ŞÇÏ°í, ÇØ´ç »óÇ° Á¥¤·º¸ ¹Ş¾Æ¿À±â
-		BookVO book = service.detailViewBook(bookNo); // »ó¼¼ »óÇ° Á¶È¸ ¸Ş¼Òµå ±×´ë·Î »ç¿ë
-		model.addAttribute("book", book);
-		return "book/updateBookForm";
-	}
-
-	// µµ¼­ Á¤º¸ ¼öÁ¤ : ¼öÁ¤µÈ »óÇ° Á¤º¸ DB¿¡ ÀúÀå
-	@RequestMapping("/book/updateBook")
-	public String detailViewBook(BookVO book) {
-		service.updateBook(book);
-		return "redirect:./listAllBook"; // ÀüÃ¼ µµ¼­ Á¶È¸ ÆäÀÌÁö·Î Æ÷¿öµù
-	}
-
-	// µµ¼­ Á¤º¸ »èÁ¦
-	@RequestMapping("/book/deleteBook/{bookNo}")
-	public String deleteBook(@PathVariable String bookNo) {
-		service.deleteBook(bookNo);
-		return "redirect:../listAllBook"; // ÀüÃ¼ µµ¼­ Á¶È¸ ÆäÀÌÁö·Î ÀÌµ¿
-	}
-	
-	// µµ¼­ ¹øÈ£ Áßº¹ Ã¼Å©
-	@ResponseBody
-	@RequestMapping("book/bookNoCheck")
-	public String bookNoCheck(@RequestParam("bookNo") String bookNo) {
-		String bookNo_result = service.bookNoCheck(bookNo);
-		
-		String result = "use";
-		if(bookNo_result != null) {
-			result = "no_use";
+		// ì‹¤í–‰ ì‹œ index í˜ì´ì§€ ì—´ê¸°
+		@RequestMapping("/")
+		public String viewIndex() {
+			return "index";
 		}
-		return result;
-	}
-	
-	// µµ¼­ °Ë»ö Æû ÀÌµ¿
-	@RequestMapping("/book/bookSearchForm")
-	public String bookSearchForm() {
-		return "book/bookSearchForm";
-	}
-	
-	// µµ¼­ °Ë»ö
-	@ResponseBody
-	@RequestMapping("/book/bookSearch")
-	public ArrayList<BookVO> bookSearch(@RequestParam HashMap<String, Object> param, Model model){
-		ArrayList<BookVO> bookList = service.bookSearch(param);
-		model.addAttribute("bookList", bookList);
-		return bookList;
-	}
+
+		// ì „ì²´ ë„ì„œ ì¡°íšŒ
+		@RequestMapping("/book/listAllBook")
+		public String listAllBook(Model model) {
+			ArrayList<BookVO> bookList = service.listAllBook();
+			model.addAttribute("bookList", bookList);
+
+			return "book/bookListView";
+		}
+
+		// ë„ì„œ ë“±ë¡ í¼ ì´ë™
+		@RequestMapping("/book/newBookForm")
+		public String newBookForm() {
+			return "book/newBookForm";
+		}
+
+		// ë„ì„œ ë“±ë¡
+		@RequestMapping("/book/insertBook")
+		public String insertBook(BookVO book) {
+			System.out.println(book.getBookNo());
+			service.insertBook(book);
+			return "redirect:./listAllBook";
+		}
+
+		// ìƒì„¸ í˜ì´ì§€ ì´ë™
+		@RequestMapping("/book/detailViewBook/{bookNo}")
+		public String detailViewBook(@PathVariable String bookNo, Model model) {
+			BookVO book = service.detailViewBook(bookNo);
+			model.addAttribute("book", book);
+			return "book/bookDetailView";
+		}
+
+		// ìˆ˜ì • í™”ë©´ í˜ì´ì§€ ì´ë™ (ìˆ˜ì •í•˜ê¸° ìœ„í•´ ìƒí’ˆ ìƒì„¸ ì •ë³´ë¥¼ í™”ë©´ì— ë¨¼ì € ì¶œë ¥)
+		@RequestMapping("/book/updateBookForm/{bookNo}")
+		public String updateBookForm(@PathVariable String bookNo, Model model) {
+			// ìƒí’ˆì •ë³´ ì „ë‹¬í•˜ê³ , í•´ë‹¹ ìƒí’ˆ ì –ã…‡ë³´ ë°›ì•„ì˜¤ê¸°
+			BookVO book = service.detailViewBook(bookNo); // ìƒì„¸ ìƒí’ˆ ì¡°íšŒ ë©”ì†Œë“œ ê·¸ëŒ€ë¡œ ì‚¬ìš©
+			model.addAttribute("book", book);
+			return "book/updateBookForm";
+		}
+
+		// ë„ì„œ ì •ë³´ ìˆ˜ì • : ìˆ˜ì •ëœ ìƒí’ˆ ì •ë³´ DBì— ì €ì¥
+		@RequestMapping("/book/updateBook")
+		public String detailViewBook(BookVO book) {
+			service.updateBook(book);
+			return "redirect:./listAllBook"; // ì „ì²´ ë„ì„œ ì¡°íšŒ í˜ì´ì§€ë¡œ í¬ì›Œë”©
+		}
+
+		// ë„ì„œ ì •ë³´ ì‚­ì œ
+		@RequestMapping("/book/deleteBook/{bookNo}")
+		public String deleteBook(@PathVariable String bookNo) {
+			service.deleteBook(bookNo);
+			return "redirect:../listAllBook"; // ì „ì²´ ë„ì„œ ì¡°íšŒ í˜ì´ì§€ë¡œ ì´ë™
+		}
+		
+		// ë„ì„œ ë²ˆí˜¸ ì¤‘ë³µ ì²´í¬
+		@ResponseBody
+		@RequestMapping("book/bookNoCheck")
+		public String bookNoCheck(@RequestParam("bookNo") String bookNo) {
+			String bookNo_result = service.bookNoCheck(bookNo);
+			
+			String result = "use";
+			if(bookNo_result != null) {
+				result = "no_use";
+			}
+			return result;
+		}
+		
+		// ë„ì„œ ê²€ìƒ‰ í¼ ì´ë™
+		@RequestMapping("/book/bookSearchForm")
+		public String bookSearchForm() {
+			return "book/bookSearchForm";
+		}
+		
+		// ë„ì„œ ê²€ìƒ‰
+		@ResponseBody
+		@RequestMapping("/book/bookSearch")
+		public ArrayList<BookVO> bookSearch(@RequestParam HashMap<String, Object> param, Model model){
+			ArrayList<BookVO> bookList = service.bookSearch(param);
+			model.addAttribute("bookList", bookList);
+			return bookList;
+		}
 	
 	
 }
