@@ -114,18 +114,25 @@ public class ProductController {
 		return prdList;
 	}
 
-// 상품 검색 폼2로 이동
+	// 상품 검색 폼2로 이동
 	@RequestMapping("/product/productSearchForm2")
 	public String productSearchForm2() {
 		return "product/productSearchForm2";
 	}
 
+	// 뷰 페이지를 반환하여 값을 받아온다.
 	@RequestMapping("/product/productSearch2")
 	public String productSearch2(@RequestParam HashMap<String, Object> param, Model model) {
 
 		ArrayList<ProductVO> prdList = service.productSearch(param);
 		model.addAttribute("prdList", prdList);
-		
+
 		return "product/productSearchResultView"; // 뷰페이지 반환
+	}
+
+	// 상품 검색 폼3으로 이동
+	@RequestMapping("/product/productSearchForm3")
+	public String productSearchForm3() {
+		return "product/productSearchForm3";
 	}
 }

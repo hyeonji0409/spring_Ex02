@@ -18,6 +18,11 @@
 	<h1>Ajax</h1>
 	<a href="loginForm">로그인</a><br>
 	<a href="loginForm2">로그인2</a><br>
-		
+	
+	<br>
+	<hr>
+	<h1>@RestController 연습</h1>
+	<a href="product/productSearchForm3">상품 검색3</a> <br><br>
+	
 </body>
 </html>
