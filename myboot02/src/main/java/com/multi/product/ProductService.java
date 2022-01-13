@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProductService implements IProductService {
-	// MyBatis 사용한 경우 DI 설정하려면 Autowired와 Qualifier 같이 사용
+		// MyBatis 사용한 경우 DI 설정하려면 Autowired와 Qualifier 같이 사용
 		@Autowired
 		@Qualifier("IProductDAO")
 		IProductDAO dao;
