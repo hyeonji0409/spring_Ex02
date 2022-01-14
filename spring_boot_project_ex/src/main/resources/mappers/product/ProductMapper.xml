@@ -5,5 +5,15 @@
   
 <mapper namespace="com.boot.projectEx.dao.IProductDAO">
 	
+	<!-- 카테고리별 상품 조회 -->
+	<!-- id는 DAO의 이름과 같아야 한다!!! -->
+	<select id="listCtgProduct" parameterType="string" resultType="com.boot.projectEx.model.ProductVO">
+		SELECT * FROM product WHERE ctgId=#{ctgId} ORDER BY prdNo
+	</select>
+	
+	<!-- 상세 상품 정보 조회 -->
+	<select id="detailViewProduct" parameterType="string" resultType="com.boot.projectEx.model.ProductVO">
+		SELECT * FROM product WHERE prdNo=#{prdNo}
+	</select>
 	
 </mapper>

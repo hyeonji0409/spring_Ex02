@@ -20,10 +20,10 @@
 				</ul>
 			</div>
 			<div id="companyInfo">
-				<img src="image/footer.png">
+				<img src="<c:url value='/image/footer.png'/>">
 			</div>
 			<div id="moveToTopBox">
-				<img src="image/moveToTop.png" id="moveToTop">
+				<img src="<c:url value='/image/moveToTop.png'/>" id="moveToTop">
 			</div>
 		</div>
 	</footer>

@@ -5,23 +5,23 @@
 <head>
 	<meta charset="UTF-8">
 	<title>프로젝트 예제 : index</title>
-	<link href="css/common.css" rel="stylesheet" type="text/css">
-	<link href="css/index.css" rel="stylesheet" type="text/css">
-	<link href="css/menu.css" rel="stylesheet" type="text/css">
-	<link href="css/slideShow.css" rel="stylesheet" type="text/css">
-	<link href="css/tabMenu.css" rel="stylesheet" type="text/css">
-	<link href="css/product.css" rel="stylesheet" type="text/css">
-	<script src="js/jquery-3.6.0.min.js"></script>
-	<script src="js/subMenu.js"></script>
-	<script src="js/slideShow.js"></script>
-	<script src="js/tabMenu.js"></script>
-	<script src="js/index.js"></script>
+	<link href="<c:url value='/css/common.css' />" rel="stylesheet" type="text/css">
+	<link href="<c:url value='/css/index.css' />" rel="stylesheet" type="text/css">
+	<link href="<c:url value='/css/menu.css' />" rel="stylesheet" type="text/css">
+	<link href="<c:url value='/css/slideShow.css' />" rel="stylesheet" type="text/css">
+	<link href="<c:url value='/css/tabMenu.css' />" rel="stylesheet" type="text/css">
+	<link href="<c:url value='/css/product.css' />" rel="stylesheet" type="text/css">
+	<script src="<c:url value='/js/jquery-3.6.0.min.js' />"></script>
+	<script src="<c:url value='/js/subMenu.js' />"></script>
+	<script src="<c:url value='/js/slideShow.js' />"></script>
+	<script src="<c:url value='/js/tabMenu.js' />"></script>
+	<script src="<c:url value='/js/index.js' />"></script>
 </head>
 <body>
 	<header>
 		<div id="headerBox">
 			<div id="logoBox">
-				<a href="index.html"><img src="image/logo.png" id="logoImg"></a>
+				<a href="<c:url value='/' />"><img src="<c:url value="/image/logo.png" />" id="logoImg"></a>
 			</div>
 			<div id="topMenuBox">
 			
@@ -37,7 +37,9 @@
 				${sessionScope.sid} 님 환영합니다! &nbsp; &nbsp;
 				<a href="<c:url value="/logout" />">로그아웃</a>
 			</c:if>
-			게시판 이벤트 장바구니 고객센터 MyPage</div>
+			게시판 이벤트 
+			<a href="<c:url value="/product/cartList" />">장바구니</a>
+			 고객센터 MyPage</div>
 		</div>
 	</header>
 	<nav>
@@ -56,8 +58,8 @@
 			<div class="subMenuItem" id="subMenuItem1">
 				<ul>
 					<li><a href="<c:url value='/product/listCtgProduct/${1}' />">노트북</a></li>
-					<li><a href="<c:url value='/product/listCtgProduct/${2}' />">마우스</a></li>
-					<li><a href="<c:url value='/product/listCtgProduct/${3}' />">프린터</a></li>
+					<li><a href="<c:url value='/product/listCtgProduct/${2}' />">프린터</a></li>
+					<li><a href="<c:url value='/product/listCtgProduct/${3}' />">마우스</a></li>
 					<li><a href="<c:url value='/product/listCtgProduct/${4}' />">키보드</a></li>
 				</ul>
 			</div>

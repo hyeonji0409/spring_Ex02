@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.boot.projectEx.dao.ICartDAO">
+
+	<!-- 장바구니에 동일 상품이 존재하는지 확인 -->
+	<select id="checkPrdInCart" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*)
+		FROM cart
+		WHERE prdNo = #{prdNo} AND memId=#{memId}
+	</select>
+	
+	<!-- 장바구니에 동일 상품이 존재하지 않으면 장바구니에 추가 -->	
+	<insert id="insertCart" parameterType="com.boot.projectEx.model.CartVO">
+		INSERT INTO cart (memId, prdNo, cartQty)
+		VALUES (#{memId}, #{prdNo}, #{cartQty})
+	</insert>
+
+	<!-- 장바구니에 동일 상품이 존재하면 주문 수량 변경 -->
+	<update id="updateQtyInCart" parameterType="com.boot.projectEx.model.CartVO">
+  		UPDATE cart
+  		SET cartQty = cartQty + #{cartQty}
+  		WHERE memId=#{memId} AND prdNo=#{prdNo}
+  	</update>
+	
+	<!-- 장바구니 목록 출력 -->
+	<select id="cartList" parameterType="string" resultType="com.boot.projectEx.model.CartVO">
+		SELECT c.cartNo, p.prdNo, p.prdImg, p.prdName, p.prdPrice, c.cartQty, c.memId
+		FROM product p, cart c
+		WHERE p.prdNo = c.prdNo AND c.memId = #{memId}
+		ORDER BY c.cartNo
+	</select>
+	
+	<!-- 장바구니 삭제 -->
+	<delete id="deleteCart" parameterType="string">
+		DELETE FROM cart WHERE cartNo = #{cartNo}
+	</delete>
+	
+</mapper>

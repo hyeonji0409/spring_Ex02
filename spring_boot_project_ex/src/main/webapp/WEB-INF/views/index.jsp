@@ -17,16 +17,25 @@
 					<!-- 슬라이드 쇼  -->
 					<!-- 이전/다음 버튼 -->
 					<div id="prevNextButtonBox">
-						<img id="prevButton" src="image/prevButton.png"> <img id="nextButton" src="image/nextButton.png">
+						<img id="prevButton" src="image/prevButton.png"> 
+						<img id="nextButton" src="image/nextButton.png">
 					</div>
 					<div id="slideShowBox">
 						<div id="slidePanel">
-							<img src="image/slide_img_01.jpg" class="slideImage"> <img src="image/slide_img_02.jpg" class="slideImage"> <img src="image/slide_img_03.jpg" class="slideImage"> <img src="image/slide_img_04.jpg" class="slideImage"> <img src="image/slide_img_05.jpg" class="slideImage">
+							<img src="image/slide_img_01.jpg" class="slideImage"> 
+							<img src="image/slide_img_02.jpg" class="slideImage"> 
+							<img src="image/slide_img_03.jpg" class="slideImage"> 
+							<img src="image/slide_img_04.jpg" class="slideImage"> 
+							<img src="image/slide_img_05.jpg" class="slideImage">
 						</div>
 					</div>
 					<!-- slideShowBox 끝 -->
 					<div id="controlPanel">
-						<img src="image/controlButton1.png" class="controlButton"> <img src="image/controlButton1.png" class="controlButton"> <img src="image/controlButton1.png" class="controlButton"> <img src="image/controlButton1.png" class="controlButton"> <img src="image/controlButton1.png" class="controlButton">
+						<img src="image/controlButton1.png" class="controlButton"> 
+						<img src="image/controlButton1.png" class="controlButton"> 
+						<img src="image/controlButton1.png" class="controlButton"> 
+						<img src="image/controlButton1.png" class="controlButton"> 
+						<img src="image/controlButton1.png" class="controlButton">
 					</div>
 				</article>
 	
@@ -63,8 +72,10 @@
 					<div id="productBox">
 						<h3>베스트 상품</h3>
 						<div class="product">
+						
 							<div>
-								<a href="#"><img src="image/prd01.jpg"></a>
+								<a href="<c:url value='/product/detailViewProduct/${1001}'/>">
+								<img src="<c:url value='/images/1001.jpg' />"></a>
 							</div>
 							<div>
 								<a href="#"><img src="image/prd02.jpg"></a>
